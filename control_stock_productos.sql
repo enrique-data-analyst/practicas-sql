@@ -1,9 +1,9 @@
--- Análisis de rotación y volumen de Stock
-SELECT 
+-- Ranking de movimiento de stock por producto
+SELECT TOP 20
+    NombreProducto,
     Categoría,
-    Subcategoría,
-    SUM(Cantidad) AS Unidades_Vendidas_Total,
-    COUNT(DISTINCT NombreProducto) AS Variedad_Productos_Distintos
-FROM Ventas_Retail
-GROUP BY Categoría, Subcategoría
-ORDER BY Unidades_Vendidas_Total DESC;
+    SUM(Cantidad) AS Total_Unidades_Vendidas,
+    COUNT(DISTINCT [ID de cliente]) AS Clientes_Unicos
+FROM Sales
+GROUP BY NombreProducto, Categoría
+ORDER BY Total_Unidades_Vendidas DESC;
